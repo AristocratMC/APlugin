@@ -7,8 +7,8 @@ import org.bukkit.Bukkit;
  * Created by Aristocrat on 12/9/2017.
  */
 public class BukkitUtilsImpl extends BukkitUtils {
-    public BukkitUtilsImpl(APlugin aPlugin) {
-        super(aPlugin);
+    public BukkitUtilsImpl(APlugin plugin) {
+        super(plugin);
     }
 
     @Override
