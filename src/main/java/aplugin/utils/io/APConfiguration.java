@@ -10,7 +10,6 @@ import java.io.File;
  * Created by Aristocrat on 12/9/2017.
  */
 public abstract class APConfiguration {
-    // Static fields
     protected YamlConfiguration configYaml;
 
     public YamlConfiguration getYaml() {
