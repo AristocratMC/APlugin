@@ -7,6 +7,7 @@ import aplugin.utils.io.APConfiguration;
 import aplugin.utils.io.APConfigurationImpl;
 import aplugin.utils.io.BukkitUtils;
 import aplugin.utils.io.BukkitUtilsImpl;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,6 +25,10 @@ public class APlugin extends JavaPlugin {
     public APlugin() {
         utils = new BukkitUtilsImpl(this);
         logger = getLogger();
+    }
+
+    public static APlugin getPlugin() {
+        return (APlugin)Bukkit.getPluginManager().getPlugin("APlugin");
     }
 
     private DiscordMessageSender discordMessageSender;
@@ -51,7 +56,7 @@ public class APlugin extends JavaPlugin {
 
     }
 
-    public void loadDiscordIntegration() {
+    private void loadDiscordIntegration() {
         discordMessageSender = new DiscordMessageSenderImpl(this, config.getConfigurationSection("aplugin.discord"));
     }
 
