@@ -1,5 +1,9 @@
 package aplugin.init;
 
+import aplugin.api.DiscordApi;
+import aplugin.api.DiscordApiImpl;
+import aplugin.api.GameApi;
+import aplugin.api.GameApiImpl;
 import aplugin.discord.DiscordMessageSender;
 import aplugin.discord.DiscordMessageSenderImpl;
 import aplugin.listeners.ChatEventListener;
@@ -21,10 +25,14 @@ public class APlugin extends JavaPlugin {
     private YamlConfiguration config;
     private Logger logger;
     private BukkitUtils utils;
+    private GameApi gameApi;
+    private DiscordApi discordApi;
 
     public APlugin() {
-        utils = new BukkitUtilsImpl(this);
         logger = getLogger();
+        utils = new BukkitUtilsImpl(this);
+        gameApi = new GameApiImpl(utils);
+        discordApi = null;
     }
 
     public static APlugin getPlugin() {
@@ -58,6 +66,7 @@ public class APlugin extends JavaPlugin {
 
     private void loadDiscordIntegration() {
         discordMessageSender = new DiscordMessageSenderImpl(this, config.getConfigurationSection("aplugin.discord"));
+        discordApi = new DiscordApiImpl(discordMessageSender);
     }
 
     private void loadEventListeners() {
@@ -66,15 +75,21 @@ public class APlugin extends JavaPlugin {
         }
     }
 
+    @Deprecated
     public DiscordMessageSender getDiscordMessageSender() {
         return discordMessageSender;
     }
 
-    public void setDiscordMessageSender(DiscordMessageSender discordMessageSender) {
-        this.discordMessageSender = discordMessageSender;
-    }
-
+    @Deprecated
     public BukkitUtils getUtils() {
         return utils;
+    }
+
+    public GameApi getGameApi() {
+        return gameApi;
+    }
+
+    public DiscordApi getDiscordApi() {
+        return discordApi;
     }
 }
