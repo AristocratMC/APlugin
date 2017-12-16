@@ -28,7 +28,9 @@ public class APConfigurationImpl extends APConfiguration {
         pluginDataFolder = plugin.getDataFolder();
 
         if (!pluginDataFolder.exists()) {
-            pluginDataFolder.mkdir();
+            if (!pluginDataFolder.mkdir()) {
+                Bukkit.getLogger().severe("Failed to create the plugin data folder!");
+            }
         }
 
         configFile = new File(pluginDataFolder, configurationFileName);

@@ -126,7 +126,7 @@ public class DiscordMessageSenderImpl implements DiscordMessageSender {
     public void sendBufferedPM(User user, Collection<String> msgs) {
         if (API != null) {
             try {
-                List<StringBuilder> stringBuilders = new ArrayList<StringBuilder>();
+                List<StringBuilder> stringBuilders = new ArrayList<>();
                 StringBuilder sbCurr = new StringBuilder("");
                 stringBuilders.add(sbCurr);
                 for (String msg : msgs) {
@@ -152,7 +152,6 @@ public class DiscordMessageSenderImpl implements DiscordMessageSender {
                 plugin.getLogger().severe(ex.getLocalizedMessage());
                 ex.printStackTrace();
             }
-            return;
         }
     }
 
@@ -193,7 +192,7 @@ public class DiscordMessageSenderImpl implements DiscordMessageSender {
     public void sendBufferedRawMessage(Collection<String> messageBuffer, TextChannel targetChannel) {
         if (API != null) {
             try {
-                List<StringBuilder> stringBuilders = new ArrayList<StringBuilder>();
+                List<StringBuilder> stringBuilders = new ArrayList<>();
                 StringBuilder sbCurr = new StringBuilder();
                 stringBuilders.add(sbCurr);
 
@@ -269,7 +268,6 @@ public class DiscordMessageSenderImpl implements DiscordMessageSender {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 player.sendMessage("§f<%usernick%> %message%".replaceAll("%usernick%", name).replaceAll("%message%", formatMoney(msg)));
             }
-            return;
         }
     }
 
